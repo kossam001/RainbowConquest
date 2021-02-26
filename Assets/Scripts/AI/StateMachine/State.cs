@@ -5,10 +5,10 @@ using System;
 
 public enum StateID
 {
-    InCombat,
-    Chase
+    Wander
 }
 
+[CreateAssetMenu(fileName = "State", menuName = "AITreeNodes/State")]
 public class State : ScriptableObject
 {
     [SerializeField] protected TreeNode rootNode;
