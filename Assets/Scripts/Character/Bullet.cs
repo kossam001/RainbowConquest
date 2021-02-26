@@ -16,4 +16,12 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(duration);
         BulletManager.Instance.ReturnBullet(gameObject);
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Character"))
+        {
+            other.gameObject.GetComponent<ColourChange>().ChangeColour(GetComponent<MeshRenderer>().material);
+        }
+    }
 }

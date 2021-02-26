@@ -11,16 +11,16 @@ public class ColourChange : MonoBehaviour
     {
         data = GetComponent<CharacterData>();
 
-        data.currentColour = GameManager.Instance.GetColour();
-        
-        foreach (SkinnedMeshRenderer mesh in meshes)
-        {
-            mesh.material = data.currentColour;
-        }
+        ChangeColour(GameManager.Instance.GetColour());
     }
 
     public void ChangeColour(Material material)
     {
         data.currentColour = material;
+
+        foreach (SkinnedMeshRenderer mesh in meshes)
+        {
+            mesh.material = data.currentColour;
+        }
     }
 }

@@ -472,9 +472,11 @@ GameObject:
   - component: {fileID: 6231985380443978364}
   - component: {fileID: 6231985380443978367}
   - component: {fileID: 6920384946681066323}
+  - component: {fileID: 6231985380443978369}
+  - component: {fileID: 4174791803560039398}
   m_Layer: 6
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,7 +574,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75745fcbc0cae9f4d906279f12d47d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpawnPoint: {fileID: 0}
+  bulletSpawnPoint: {fileID: 1559380448}
+  force: 50
+--- !u!114 &6231985380443978369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716478931674776764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b74f93eb2546742a2047ed0b3cd2df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  isAttacking: 0
+  currentColour: {fileID: 0}
+--- !u!114 &4174791803560039398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716478931674776764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2d6bd8a4cbdb14c9a4d9656ec1f7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshes:
+  - {fileID: 6563040069612807359}
+  - {fileID: 1103056943604760482}
 --- !u!1 &4805382395630397415
 GameObject:
   m_ObjectHideFlags: 0
