@@ -21,8 +21,7 @@ public class PlayerController : Character
     public CharacterData characterData;
 
     private float lookDirection;
-
-    public SkillList skills;
+    
     private Animator characterAnimator;
     public AnimatorOverrideController animatorOverride;
 
@@ -76,36 +75,8 @@ public class PlayerController : Character
         movementComponent.Turn(cam.transform.rotation);
     }
 
-    public override IEnumerator UseSkill(ActiveSkill skill)
-    {
-        currentlyActiveSkill = skill;
-
-        yield return StartCoroutine(currentlyActiveSkill.Use());
-        currentlyActiveSkill = null;
-    }
-
     public void OnAttack(InputValue button)
     {
-        int currentCombo = characterAnimator.GetInteger(ComboHash);
-        bool currentlyAttacking = characterAnimator.GetBool(IsAttackingHash);
-        bool canCancel = characterAnimator.GetBool(CanCancelHash);
 
-        if (button.isPressed && (!currentlyAttacking))
-        {
-            Skill basicAttack = skills.skillTable["BasicAttack" + currentCombo];
-            basicAttack.OverrideAnimationData(characterAnimator, animatorOverride);
-            
-            characterAnimator.SetBool(IsAttackingHash, true);
-        }
-        else if (button.isPressed && canCancel)
-        {
-            characterAnimator.SetInteger(ComboHash, ++currentCombo);
-
-            Skill basicAttack = skills.skillTable["BasicAttack" + currentCombo];
-            animatorOverride["BruteStandingMeleeAttackHorizontal"] = basicAttack.animation;
-            basicAttack.OverrideAnimationData(characterAnimator, animatorOverride);
-
-            characterAnimator.Play("SkillUse", 1, 0.0f);
-        }
     }
 }
