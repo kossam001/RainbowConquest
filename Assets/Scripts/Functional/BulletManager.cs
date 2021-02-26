@@ -37,4 +37,10 @@ public class BulletManager : MonoBehaviour
     {
         return bullets.Dequeue();
     }
+
+    public void ReturnBullet(GameObject bullet)
+    {
+        bullet.SetActive(false);
+        bullets.Enqueue(bullet);
+    }
 }

@@ -8,12 +8,12 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine()
+        StartCoroutine(Despawn());
     }
 
     private IEnumerator Despawn()
     {
         yield return new WaitForSeconds(duration);
-
+        BulletManager.Instance.ReturnBullet(gameObject);
     }
 }

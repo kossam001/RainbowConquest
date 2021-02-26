@@ -3751,19 +3751,6 @@ MonoBehaviour:
   meshes:
   - {fileID: 5484437793666079352}
   - {fileID: 1749333187542794597}
---- !u!114 &6231985380443978365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6231985380443978363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f2d6bd8a4cbdb14c9a4d9656ec1f7ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshes: []
 --- !u!114 &6231985380443978367 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6231985380443978367, guid: 901c7beb134e8a1469f872037c9e4e3d, type: 3}
