@@ -534,6 +534,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1557140529}
     m_Modifications:
+    - target: {fileID: 4174791803560039398, guid: 901c7beb134e8a1469f872037c9e4e3d, type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 1994919939}
     - target: {fileID: 4716478931674776764, guid: 901c7beb134e8a1469f872037c9e4e3d, type: 3}
       propertyPath: m_Name
       value: 'Character '
@@ -3777,6 +3781,7 @@ MonoBehaviour:
   activeTarget: {fileID: 0}
   combatRange: 10
   agent: {fileID: 1451837369}
+  hasTeamChanged: 0
 --- !u!114 &1994919940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3791,7 +3796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startState: 0
   stateTemplates:
-  - {fileID: 11400000, guid: 6f4cb10ab7cf4904d8c71ce5a88b72e4, type: 2}
+  - {fileID: 11400000, guid: d996a28bd56167141b9ce6fc65a4c876, type: 2}
   currentState: {fileID: 0}
 --- !u!1 &2134873353
 GameObject:

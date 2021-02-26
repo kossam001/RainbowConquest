@@ -11,7 +11,7 @@ public class ColourChange : MonoBehaviour
     {
         data = GetComponent<CharacterData>();
 
-        ChangeColour(GameManager.Instance.GetColour());
+        ChangeColour(GameManager.Instance.InitColour(gameObject));
     }
 
     public void ChangeColour(Material material)

@@ -7,12 +7,22 @@ public class ChaseTarget : TreeNode
 {
     public override bool PerformCheck()
     {
+        if (brain.activeTarget == null) return false;
+
         Vector3 targetPosition = brain.activeTarget.transform.position;
         Vector3 selfPosition = brain.character.transform.position;
 
-        if (Vector3.Distance(targetPosition, selfPosition) > brain.combatRange)
+        float distance = Vector3.Distance(targetPosition, selfPosition);
+        Debug.Log(distance);
+
+        if (distance > brain.combatRange)
         {
+            brain.agent.isStopped = false;
             brain.moveDestination = Vector3.Scale(targetPosition, new Vector3(1.0f, 0.0f, 1.0f));
+        }
+        else
+        {
+            brain.agent.isStopped = true;
         }
 
         return true;
@@ -21,8 +31,6 @@ public class ChaseTarget : TreeNode
     public override bool Run()
     {
         if (!PerformCheck()) return false;
-
-        brain.moveDestination = brain.enemyTargets[Random.Range(0, brain.enemyTargets.Count - 1)].transform.position;
 
         return base.Run();
     }
