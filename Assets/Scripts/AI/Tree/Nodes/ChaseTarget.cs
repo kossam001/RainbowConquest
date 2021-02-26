@@ -13,16 +13,15 @@ public class ChaseTarget : TreeNode
         Vector3 selfPosition = brain.character.transform.position;
 
         float distance = Vector3.Distance(targetPosition, selfPosition);
-        Debug.Log(distance);
 
-        if (distance > brain.combatRange)
+        if (distance > brain.combatRange * 0.5f)
         {
-            brain.agent.isStopped = false;
             brain.moveDestination = Vector3.Scale(targetPosition, new Vector3(1.0f, 0.0f, 1.0f));
         }
         else
         {
-            brain.agent.isStopped = true;
+            brain.agent.ResetPath();
+            state.ChangeState(StateID.Wander);
         }
 
         return true;

@@ -10,7 +10,7 @@ public class StateMachine : MonoBehaviour
     private Brain brain;
 
     [Tooltip("Debug")]
-    [SerializeField] private State currentState;
+    [SerializeField] State currentState;
 
     private void Awake()
     {
@@ -20,7 +20,7 @@ public class StateMachine : MonoBehaviour
         foreach (State state in stateTemplates)
         {
             State stateCopy = Instantiate(state);
-            stateCopy.Initialize(brain);
+            stateCopy.Initialize(brain, this);
             states.Add(stateCopy.id, stateCopy);
         }
 
@@ -30,5 +30,10 @@ public class StateMachine : MonoBehaviour
     private void Update()
     {
         currentState.Update();
+    }
+
+    public void ChangeState(StateID id)
+    {
+        currentState = states[id];
     }
 }
