@@ -10,8 +10,6 @@ public class PlayerController : Character
     private readonly int MoveXHash = Animator.StringToHash("MoveX");
     private readonly int MoveZHash = Animator.StringToHash("MoveZ");
     private readonly int IsAttackingHash = Animator.StringToHash("IsAttacking");
-    private readonly int CanCancelHash = Animator.StringToHash("CanCancel");
-    private readonly int ComboHash = Animator.StringToHash("Combo");
 
     public float movementSpeed;
     public float rotationSpeed;
@@ -23,7 +21,6 @@ public class PlayerController : Character
     private float lookDirection;
     
     private Animator characterAnimator;
-    public AnimatorOverrideController animatorOverride;
 
     [SerializeField] private float forwardMagnitude;
 
@@ -32,34 +29,19 @@ public class PlayerController : Character
     private void Awake()
     {
         characterAnimator = character.GetComponent<Animator>();
-        characterAnimator.runtimeAnimatorController = animatorOverride;
         movementComponent = character.GetComponent<Movement>();
     }
 
     // Used to handle physics
     void FixedUpdate()
     {
-        if ((movementDirection.y != 0.0f || movementDirection.x != 0.0f) 
-            && (!characterAnimator.GetBool(IsAttackingHash) 
-            || characterAnimator.GetBool(CanCancelHash)))
+        if ((movementDirection.y != 0.0f || movementDirection.x != 0.0f))
         {
-            CancelAttack();
-
             Vector3 forwardForce = character.transform.forward * movementDirection.y;
             Vector3 rightForce = character.transform.right * movementDirection.x;
             movementComponent.Move(forwardForce + rightForce);
 
             Turn();
-        }
-    }
-
-    private void CancelAttack()
-    {
-        if (characterAnimator.GetBool(CanCancelHash))
-        {
-            characterAnimator.SetBool(IsAttackingHash, false);
-            characterAnimator.SetBool(CanCancelHash, false);
-            characterAnimator.SetInteger(ComboHash, 0);
         }
     }
 
