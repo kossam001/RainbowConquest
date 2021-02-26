@@ -16,6 +16,7 @@ public class PlayerController : Character
     public Camera cam;
     public GameObject character;
     private Movement movementComponent;
+    private Attack attackComponent;
     public CharacterData characterData;
 
     private float lookDirection;
@@ -28,8 +29,12 @@ public class PlayerController : Character
 
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         characterAnimator = character.GetComponent<Animator>();
         movementComponent = character.GetComponent<Movement>();
+        attackComponent = character.GetComponent<Attack>();
     }
 
     // Used to handle physics
@@ -60,6 +65,6 @@ public class PlayerController : Character
 
     public void OnAttack(InputValue button)
     {
-
+        attackComponent.Shoot();
     }
 }
