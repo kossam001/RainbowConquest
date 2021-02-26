@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f675ed4c1469644952ea0396d8957d, type: 3}
-  m_Name: Wander
+  m_Script: {fileID: 11500000, guid: 6482c355aa6af784b8e129b277d407a7, type: 3}
+  m_Name: FindWanderTarget
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 11400000, guid: 42b9c9bf2fd1c054690afb7e25972a15, type: 2}
-  currentNode: {fileID: 0}
-  brain: {fileID: 0}
-  id: 0
-  transferrableStates: []
+  nodeTemplates:
+  - {fileID: 11400000, guid: fb1d75e47dc70c34487bad191c720394, type: 2}
+  nodes: []
+  isSelector: 0
+  wanderRange: 20

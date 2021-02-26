@@ -8,7 +8,7 @@ public enum StateID
     Wander
 }
 
-[CreateAssetMenu(fileName = "State", menuName = "AITreeNodes/State")]
+[CreateAssetMenu(fileName = "State", menuName = "AIStateNodes/State")]
 public class State : ScriptableObject
 {
     [SerializeField] protected TreeNode rootNode;

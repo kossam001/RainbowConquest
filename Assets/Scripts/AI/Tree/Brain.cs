@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Brain : MonoBehaviour
 {
     public GameObject character;
-    public AIController controller;
+    private StateMachine controller;
 
     public Vector3 moveDestination;
 
@@ -17,4 +17,9 @@ public class Brain : MonoBehaviour
     public float combatRange; 
 
     public NavMeshAgent agent;
+
+    private void Awake()
+    {
+        controller = GetComponent<StateMachine>();
+    }
 }
