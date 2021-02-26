@@ -17,7 +17,7 @@ public class PlayerController : Character
     public float rotationSpeed;
     public Camera cam;
     public GameObject character;
-    public Movement movementComponent;
+    private Movement movementComponent;
     public CharacterData characterData;
 
     private float lookDirection;
@@ -33,6 +33,7 @@ public class PlayerController : Character
     {
         characterAnimator = character.GetComponent<Animator>();
         characterAnimator.runtimeAnimatorController = animatorOverride;
+        movementComponent = character.GetComponent<Movement>();
     }
 
     // Used to handle physics
