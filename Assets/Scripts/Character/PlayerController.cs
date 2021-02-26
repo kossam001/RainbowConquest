@@ -29,6 +29,8 @@ public class PlayerController : Character
 
     private void Awake()
     {
+
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
