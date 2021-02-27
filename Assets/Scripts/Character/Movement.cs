@@ -12,7 +12,9 @@ public class Movement : MonoBehaviour
     private float maxSpeed;
     public float movementSpeed;
     public float rotationSpeed;
-    //public float stoppingVelocity;
+
+    private readonly int MoveXHash = Animator.StringToHash("MoveX");
+    private readonly int MoveZHash = Animator.StringToHash("MoveZ");
 
     private void Awake()
     {
@@ -33,6 +35,18 @@ public class Movement : MonoBehaviour
 
         // Clamp velocity
         rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, maxSpeed);
+
+        if (Mathf.Abs(movementDirection.x) > 0.1f || Mathf.Abs(movementDirection.z) > 0.1f)
+        {
+            movementDirection = movementDirection.normalized;
+            animator.SetFloat(MoveXHash, movementDirection.x);
+            animator.SetFloat(MoveZHash, movementDirection.z);
+        }
+        else
+        {
+            animator.SetFloat(MoveXHash, 0.0f);
+            animator.SetFloat(MoveZHash, 0.0f);
+        }
     }
 
     public void Turn(Quaternion rotateDirection)

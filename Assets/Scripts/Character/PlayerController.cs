@@ -45,12 +45,12 @@ public class PlayerController : Character
     {
         if ((movementDirection.y != 0.0f || movementDirection.x != 0.0f))
         {
-            Vector3 forwardForce = character.transform.forward * movementDirection.y;
-            Vector3 rightForce = character.transform.right * movementDirection.x;
-            movementComponent.Move(forwardForce + rightForce);
-
             Turn();
         }
+
+        Vector3 forwardForce = character.transform.forward * movementDirection.y;
+        Vector3 rightForce = character.transform.right * movementDirection.x;
+        movementComponent.Move(forwardForce + rightForce);
 
         shootCooldown -= Time.deltaTime;
     }
@@ -60,9 +60,6 @@ public class PlayerController : Character
         if (isPaused) return;
 
         movementDirection = vector2.Get<Vector2>();
-
-        characterAnimator.SetFloat(MoveXHash, movementDirection.x);
-        characterAnimator.SetFloat(MoveZHash, movementDirection.y);
     }
 
     public override void Turn()
