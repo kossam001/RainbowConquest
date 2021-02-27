@@ -27,6 +27,8 @@ public class ChaseTarget : TreeNode
         {
             brain.agent.ResetPath();
             state.ChangeState(StateID.Wander);
+
+            return false;
         }
 
         return true;

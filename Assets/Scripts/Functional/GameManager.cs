@@ -22,6 +22,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Slider greenTeamScore;
     [SerializeField] private Slider blueTeamScore;
 
+    [Header("Health UI")]
+    [SerializeField] private CharacterData playerData;
+    [SerializeField] private Slider redHealth;
+    [SerializeField] private Slider greenHealth;
+    [SerializeField] private Slider blueHealth;
+
     public Dictionary<Color, Dictionary<int, GameObject>> teams;
 
     private int characterCount = 0;
@@ -61,6 +67,13 @@ public class GameManager : MonoBehaviour
         data.id = characterCount;
         characterCount++;
 
+        // Setup health
+        data.colourHealth = new Dictionary<Color, float>();
+        data.colourHealth.Add(Color.red, 0.0f);
+        data.colourHealth.Add(Color.green, 0.0f);
+        data.colourHealth.Add(Color.blue, 0.0f);
+        data.colourHealth[randColour.color] = 1.0f;
+
         return randColour;
     }
 
@@ -87,6 +100,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        UpdateScore();
+        UpdateHealth();
+    }
+
+    private void UpdateScore()
+    {
         int totalCharacters = numCharacters + 1; // +player
 
         float redTotal = (float)teams[colours[0].color].Count / (float)totalCharacters;
@@ -96,5 +115,16 @@ public class GameManager : MonoBehaviour
         redTeamScore.value = redTotal;
         greenTeamScore.value = greenTotal;
         blueTeamScore.value = blueTotal;
+    }
+
+    private void UpdateHealth()
+    {
+        float redTotal = (float)playerData.colourHealth[colours[0].color] / 1.0f;
+        float greenTotal = (float)playerData.colourHealth[colours[1].color] / 1.0f + redTotal;
+        float blueTotal = (float)playerData.colourHealth[colours[2].color] / 1.0f + greenTotal;
+
+        redHealth.value = redTotal;
+        greenHealth.value = greenTotal;
+        blueHealth.value = blueTotal;
     }
 }

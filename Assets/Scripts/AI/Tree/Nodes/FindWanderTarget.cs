@@ -20,6 +20,7 @@ public class FindWanderTarget : TreeNode
         {
             timer = duration;
             state.ChangeState(StateID.Chase);
+            return false;
         }
 
         return base.Run();

@@ -30,6 +30,7 @@ public class FindActiveTarget : TreeNode
                 brain.activeTarget = null;
                 brain.agent.ResetPath();
                 state.ChangeState(StateID.Wander);
+                return false;
             }
 
             timer = duration;

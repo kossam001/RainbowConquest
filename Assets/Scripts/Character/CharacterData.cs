@@ -8,4 +8,6 @@ public class CharacterData : MonoBehaviour
     public int health = 100;
     public bool isAttacking = false;
     public Material currentColour;
+
+    public Dictionary<Color, float> colourHealth;
 }
