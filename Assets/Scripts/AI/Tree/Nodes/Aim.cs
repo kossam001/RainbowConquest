@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Aim : MonoBehaviour
+[CreateAssetMenu(fileName = "Aim", menuName = "AITreeNodes/Aim")]
+public class Aim : TreeNode
 {
-    // Start is called before the first frame update
-    void Start()
+    public override bool Run()
     {
-        
-    }
+        if (brain.activeTarget != null)
+        {
+            brain.character.transform.LookAt(brain.activeTarget.transform.position);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return base.Run();
     }
 }

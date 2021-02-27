@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa77fd3130575794d8e995e746cc3d02, type: 3}
-  m_Name: WanderRoot
+  m_Script: {fileID: 11500000, guid: 39ee612bc2dca4b4a82ec97c1a8357f0, type: 3}
+  m_Name: Aim
   m_EditorClassIdentifier: 
   nodeTemplates:
-  - {fileID: 11400000, guid: ef367e32def961242b1416250ff3d41d, type: 2}
-  - {fileID: 11400000, guid: 42b9c9bf2fd1c054690afb7e25972a15, type: 2}
+  - {fileID: 11400000, guid: 2c8cf0a816766fc43b0a07d17cf0000a, type: 2}
   nodes: []
   isSelector: 0
