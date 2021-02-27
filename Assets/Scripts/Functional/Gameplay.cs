@@ -38,7 +38,7 @@ public class Gameplay : MonoBehaviour
     [SerializeField] private Slider greenHealth;
     [SerializeField] private Slider blueHealth;
 
-    public Dictionary<Color, Dictionary<int, GameObject>> teams;
+    public Dictionary<TeamColour, Dictionary<int, GameObject>> teams;
 
     private int characterCount = 0;
 
@@ -53,11 +53,11 @@ public class Gameplay : MonoBehaviour
             instance = this;
         }
 
-        teams = new Dictionary<Color, Dictionary<int, GameObject>>();
+        teams = new Dictionary<TeamColour, Dictionary<int, GameObject>>();
         
         for (int i = 0; i < 3; i++)
         {
-            teams.Add(colours[i].color, new Dictionary<int, GameObject>());
+            teams.Add((TeamColour)i, new Dictionary<int, GameObject>());
         }
 
         for (int i = 0; i < numCharacters; i++)
@@ -72,12 +72,13 @@ public class Gameplay : MonoBehaviour
         //player.GetComponent<ColourChange>().ChangeColour(colours[(int)playerTeamColour]);
     }
 
-    public Material InitColour(GameObject character, CharacterData data)
+    public Color InitColour(GameObject character, CharacterData data)
     {
         Material randColour = colours[Random.Range(0, colours.Count)];
-        teams[randColour.color].Add(characterCount, character);
+        teams[GetColourToTeam(randColour.color)].Add(characterCount, character);
 
         data.id = characterCount;
+        data.currentTeam = Gameplay.Instance.GetColourToTeam(randColour.color);
         characterCount++;
 
         // Setup health
@@ -87,28 +88,30 @@ public class Gameplay : MonoBehaviour
         data.colourHealth.Add(Color.blue, 0.0f);
         data.colourHealth[randColour.color] = 1.0f;
 
-        return randColour;
+        return randColour.color;
     }
 
-    public List<GameObject> GetEnemies(Material colour)
+    public List<GameObject> GetEnemies(TeamColour colour)
     {
         List<GameObject> enemies = new List<GameObject>();
+        List<TeamColour> teamKeys = new List<TeamColour>(teams.Keys);
 
-        foreach (Material mat in colours)
+        foreach (TeamColour col in teamKeys)
         {
-            if (mat.color != colour.color)
+            if (col != colour)
             {
-                enemies.AddRange(teams[mat.color].Values);
+                enemies.AddRange(teams[col].Values);
             }
         }
 
         return enemies;
     }
 
-    public void ChangeTeams(Material oldColour, Material newColour, CharacterData data, GameObject character)
+    public void ChangeTeams(TeamColour oldColour, TeamColour newColour, CharacterData data, GameObject character)
     {
-        teams[oldColour.color].Remove(data.id);
-        teams[newColour.color].Add(data.id, character);
+        teams[oldColour].Remove(data.id);
+        teams[newColour].Add(data.id, character);
+        data.currentTeam = newColour;
     }
 
     private void Update()
@@ -121,9 +124,9 @@ public class Gameplay : MonoBehaviour
     {
         int totalCharacters = numCharacters + 1; // +player
 
-        float redTotal = (float)teams[colours[0].color].Count / (float)totalCharacters;
-        float greenTotal = (float)teams[colours[1].color].Count / (float)(totalCharacters) + redTotal;
-        float blueTotal = (float)teams[colours[2].color].Count / (float)(totalCharacters) + greenTotal;
+        float redTotal = (float)teams[TeamColour.RED].Count / (float)totalCharacters;
+        float greenTotal = (float)teams[TeamColour.GREEN].Count / (float)(totalCharacters) + redTotal;
+        float blueTotal = (float)teams[TeamColour.BLUE].Count / (float)(totalCharacters) + greenTotal;
 
         redTeamScore.value = redTotal;
         greenTeamScore.value = greenTotal;
@@ -132,12 +135,37 @@ public class Gameplay : MonoBehaviour
 
     private void UpdateHealth()
     {
-        float redTotal = (float)playerData.colourHealth[colours[0].color] / 1.0f;
-        float greenTotal = (float)playerData.colourHealth[colours[1].color] / 1.0f + redTotal;
-        float blueTotal = (float)playerData.colourHealth[colours[2].color] / 1.0f + greenTotal;
+        float redTotal = (float)playerData.colourHealth[colours[0].color] / 3.0f;
+        float greenTotal = (float)playerData.colourHealth[colours[1].color] / 3.0f + redTotal;
+        float blueTotal = (float)playerData.colourHealth[colours[2].color] / 3.0f + greenTotal;
 
         redHealth.value = redTotal;
         greenHealth.value = greenTotal;
         blueHealth.value = blueTotal;
+    }
+
+    public TeamColour GetColourToTeam(Color colour)
+    {
+        if (Mathf.Max(colour.r, colour.g, colour.b) % colour.r == 0)
+            return TeamColour.RED;
+
+        else if (Mathf.Max(colour.r, colour.g, colour.b) % colour.g == 0)
+            return TeamColour.GREEN;
+
+        else
+            return TeamColour.BLUE;
+    }
+
+    public Color GetTeamToColour(TeamColour teamColour)
+    {
+        switch(teamColour)
+        {
+            case TeamColour.RED:
+                return Color.red;
+            case TeamColour.GREEN:
+                return Color.green;
+            default:
+                return Color.blue;
+        }
     }
 }

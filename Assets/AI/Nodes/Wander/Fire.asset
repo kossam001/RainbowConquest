@@ -15,5 +15,5 @@ MonoBehaviour:
   nodeTemplates: []
   nodes: []
   isSelector: 0
-  firerate: 5
+  firerate: 1
   timer: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float duration;
+    public GameObject owner;
 
     private void OnEnable()
     {
@@ -14,12 +15,13 @@ public class Bullet : MonoBehaviour
     private IEnumerator Despawn()
     {
         yield return new WaitForSeconds(duration);
+        owner = null;
         BulletManager.Instance.ReturnBullet(gameObject);
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Character"))
+        if (other.gameObject.CompareTag("Character") && !ReferenceEquals(other.gameObject, owner))
         {
             UpdateHealth(other.gameObject, GetComponent<MeshRenderer>().material);
         }
@@ -30,7 +32,7 @@ public class Bullet : MonoBehaviour
         CharacterData data = character.GetComponent<CharacterData>();
         List<Color> colourKeys = new List<Color>(data.colourHealth.Keys);
         float maxValue = 0.0f;
-        Color newColour = Color.black;
+        TeamColour newTeam = data.currentTeam;
 
         foreach (Color colour in colourKeys)
         {
@@ -45,13 +47,10 @@ public class Bullet : MonoBehaviour
             if (maxValue < data.colourHealth[colour])
             {
                 maxValue = data.colourHealth[colour];
-                newColour = colour;
+                newTeam = Gameplay.Instance.GetColourToTeam(colour);
             }
         }
 
-        if (newColour != data.currentColour.color)
-        {
-            character.GetComponent<ColourChange>().ChangeColour(material);
-        }
+        character.GetComponent<ColourChange>().ChangeColour(newTeam);
     }
 }

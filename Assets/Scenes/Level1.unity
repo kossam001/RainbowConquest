@@ -1014,7 +1014,7 @@ GameObject:
   - component: {fileID: 639091623}
   - component: {fileID: 639091624}
   m_Layer: 5
-  m_Name: GreenTeam
+  m_Name: Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1486,8 +1486,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: ef4f031b97de9fa44808c1e88f9cc524, type: 2}
   - {fileID: 2100000, guid: c8e6e148f8ab981419bc424eb43ca578, type: 2}
   - {fileID: 2100000, guid: f804cc0751c84fa4fabfdefcfee8280c, type: 2}
+  playerTeamColour: 1
+  player: {fileID: 1163244256}
   characterPrefab: {fileID: 4716478931674776764, guid: 901c7beb134e8a1469f872037c9e4e3d, type: 3}
-  numCharacters: 5
+  numCharacters: 49
   spawnCenter: {fileID: 810457099}
   spawnRadius: 65
   redTeamScore: {fileID: 603810677}
@@ -5198,7 +5200,7 @@ GameObject:
   - component: {fileID: 1832066837}
   - component: {fileID: 1832066838}
   m_Layer: 5
-  m_Name: RedTeam
+  m_Name: Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8373,7 +8375,7 @@ GameObject:
   - component: {fileID: 1982672243}
   - component: {fileID: 1982672244}
   m_Layer: 5
-  m_Name: BlueTeam
+  m_Name: Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
