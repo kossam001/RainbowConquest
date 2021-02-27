@@ -9,10 +9,10 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(Despawn());
+        StartCoroutine(DespawnTimer());
     }
 
-    private IEnumerator Despawn()
+    private IEnumerator DespawnTimer()
     {
         yield return new WaitForSeconds(duration);
         owner = null;
@@ -24,6 +24,8 @@ public class Bullet : MonoBehaviour
         if ((other.gameObject.CompareTag("Character") || other.gameObject.CompareTag("Player")) && !ReferenceEquals(other.gameObject, owner))
         {
             UpdateHealth(other.gameObject, GetComponent<MeshRenderer>().material);
+            owner = null;
+            BulletManager.Instance.ReturnBullet(gameObject);
         }
     }
 
