@@ -28,6 +28,7 @@ public class PlayerController : Character
     private Vector2 movementDirection;
 
     private bool isPaused = false;
+    private float shootCooldown = 0.0f;
 
     private void Awake()
     {
@@ -50,6 +51,8 @@ public class PlayerController : Character
 
             Turn();
         }
+
+        shootCooldown -= Time.deltaTime;
     }
 
     public void OnMovement(InputValue vector2)
@@ -70,6 +73,9 @@ public class PlayerController : Character
     public void OnAttack(InputValue button)
     {
         if (isPaused) return;
+        if (shootCooldown >= 0.0f) return;
+
+        shootCooldown = 0.5f;
 
         attackComponent.Shoot();
     }
