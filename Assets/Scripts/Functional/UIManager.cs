@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [Header("Main Level")]
     public Image teamLabel;
     public GameObject pauseMenu;
+    public PlayerController playerController;
 
     [Header("Stage Select")]
     public TMP_InputField redInput;
@@ -61,8 +62,25 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(name);
     }
 
-    public void TogglePauseMenu()
+    public void TogglePause()
     {
+        if (Time.timeScale == 1.0f)
+        {
+            playerController.isPaused = true;
+
+            ToggleCursor();
+
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            playerController.isPaused = false;
+
+            ToggleCursor();
+
+            Time.timeScale = 1.0f;
+        }
+
         pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
     }
 
@@ -95,6 +113,20 @@ public class UIManager : MonoBehaviour
             result.text = "YOU LOSE";
 
         GameManager.Instance.win = false;
+    }
+
+    public void ToggleCursor()
+    {
+        if (Cursor.lockState == CursorLockMode.None)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     public void Quit()

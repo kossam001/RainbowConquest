@@ -648,8 +648,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4282532590
+  m_fontColor: {r: 0.9339623, g: 0.2599235, b: 0.2599235, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1507,10 +1507,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamLabel: {fileID: 0}
   pauseMenu: {fileID: 0}
+  playerController: {fileID: 0}
   redInput: {fileID: 1703726183}
   greenInput: {fileID: 1899548777}
   blueInput: {fileID: 1878812063}
   playerTeamInput: {fileID: 847229229}
+  background: {fileID: 0}
+  result: {fileID: 0}
 --- !u!1 &701778147
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,6 +3144,7 @@ MonoBehaviour:
   redTeamSize: 0
   greenTeamSize: 0
   playerTeam: 0
+  win: 0
 --- !u!4 &1509520800
 Transform:
   m_ObjectHideFlags: 0
@@ -3656,8 +3660,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294923520
-  m_fontColor: {r: 0, g: 0.33355188, b: 1, a: 1}
+    rgba: 4294938197
+  m_fontColor: {r: 0.33490568, g: 0.5566039, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

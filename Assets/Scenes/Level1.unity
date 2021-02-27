@@ -1134,7 +1134,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 545471793}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1592040502}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StageSelect
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1592040502}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: TogglePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1592040502}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ToggleCursor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &545471793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1610,7 +1646,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 685640846}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1592040502}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1592040502}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: TogglePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1592040502}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ToggleCursor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &685640846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2063,7 +2135,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 761112867}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1592040502}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: TogglePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &761112867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5938,10 +6022,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamLabel: {fileID: 1956039389}
   pauseMenu: {fileID: 110618834}
+  playerController: {fileID: 3971098108082161741}
   redInput: {fileID: 0}
   greenInput: {fileID: 0}
   blueInput: {fileID: 0}
   playerTeamInput: {fileID: 0}
+  background: {fileID: 0}
+  result: {fileID: 0}
 --- !u!1 &1660826324
 GameObject:
   m_ObjectHideFlags: 0
@@ -9669,6 +9756,7 @@ MonoBehaviour:
   redTeamSize: 0
   greenTeamSize: 0
   playerTeam: 0
+  win: 0
 --- !u!4 &2003038900
 Transform:
   m_ObjectHideFlags: 0
@@ -9840,7 +9928,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2142591602}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1592040502}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2142591602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9956,6 +10056,17 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6a592a1e363a6c944a8e97f2a4072736, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c66377087f367eb4f97b46a9dd5e5034, type: 3}
+--- !u!114 &3971098108082161741 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5517410263492960952, guid: c66377087f367eb4f97b46a9dd5e5034, type: 3}
+  m_PrefabInstance: {fileID: 3971098108082161740}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152524545f305204abf684eaf3580fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4716478931674776646 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8532175227380059146, guid: c66377087f367eb4f97b46a9dd5e5034, type: 3}

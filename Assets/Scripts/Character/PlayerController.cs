@@ -27,7 +27,7 @@ public class PlayerController : Character
 
     private Vector2 movementDirection;
 
-    private bool isPaused = false;
+    public bool isPaused = false;
     private float shootCooldown = 0.0f;
 
     private void Awake()
@@ -82,23 +82,6 @@ public class PlayerController : Character
 
     public void OnPause()
     {
-        if (Time.timeScale == 1.0f)
-        {
-            UIManager.Instance.TogglePauseMenu();
-            isPaused = true;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
-            Time.timeScale = 0.0f;
-        }
-        else
-        {
-            UIManager.Instance.TogglePauseMenu();
-            isPaused = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
-            Time.timeScale = 1.0f;
-        }
+        UIManager.Instance.TogglePause();
     }
 }
