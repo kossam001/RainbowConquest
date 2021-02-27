@@ -35,7 +35,17 @@ public class BulletManager : MonoBehaviour
 
     public GameObject GetBullet()
     {
-        return bullets.Dequeue();
+        GameObject bullet;
+
+        if (bullets.Count > 0)
+            bullet = bullets.Dequeue();
+
+        else
+        {
+            bullet = Instantiate(bulletTemplate);
+        }
+
+        return bullet;
     }
 
     public void ReturnBullet(GameObject bullet)

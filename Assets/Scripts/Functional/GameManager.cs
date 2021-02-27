@@ -8,6 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return instance; } }
 
     [SerializeField] public List<Material> colours;
+
+    [SerializeField] private GameObject characterPrefab;
+    [SerializeField] private int numCharacters;
+
+    [SerializeField] private Transform spawnCenter;
+    [SerializeField] private float spawnRadius;
+
     public Dictionary<Color, Dictionary<int, GameObject>> teams;
 
     private int characterCount = 0;
@@ -28,6 +35,14 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             teams.Add(colours[i].color, new Dictionary<int, GameObject>());
+        }
+
+        for (int i = 0; i < numCharacters; i++)
+        {
+            Vector3 spawnLocation = spawnCenter.position + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0.0f, Random.Range(-spawnRadius, spawnRadius));
+
+            GameObject spawnedCharacter = Instantiate(characterPrefab, spawnLocation, Quaternion.Euler(0.0f,0.0f, 0.0f));
+            spawnedCharacter.transform.SetParent(spawnCenter);
         }
     }
 

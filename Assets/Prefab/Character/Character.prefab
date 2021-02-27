@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &412905048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 412905049}
+  - component: {fileID: 412905051}
+  - component: {fileID: 412905050}
+  m_Layer: 0
+  m_Name: Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &412905049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412905048}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5350166637740203526}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &412905051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412905048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d59e3a60592ba548abe370197a79097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startState: 0
+  stateTemplates:
+  - {fileID: 11400000, guid: d996a28bd56167141b9ce6fc65a4c876, type: 2}
+  - {fileID: 11400000, guid: 6f4cb10ab7cf4904d8c71ce5a88b72e4, type: 2}
+  currentState: {fileID: 0}
+--- !u!114 &412905050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412905048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57846ffab22638f409f77cbe1c7600fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 4716478931674776764}
+  moveDestination: {x: 0, y: 0, z: 0}
+  enemyTargets: []
+  activeTarget: {fileID: 0}
+  combatRange: 20
+  agent: {fileID: 641205067}
 --- !u!1 &1559380447
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +541,7 @@ GameObject:
   - component: {fileID: 6920384946681066323}
   - component: {fileID: 6231985380443978369}
   - component: {fileID: 4174791803560039398}
+  - component: {fileID: 641205067}
   m_Layer: 6
   m_Name: Character
   m_TagString: Character
@@ -495,6 +563,7 @@ Transform:
   - {fileID: 8385705294944302039}
   - {fileID: 2375759337505184901}
   - {fileID: 463816856833687186}
+  - {fileID: 412905049}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -588,6 +657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b74f93eb2546742a2047ed0b3cd2df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   health: 100
   isAttacking: 0
   currentColour: {fileID: 0}
@@ -606,6 +676,28 @@ MonoBehaviour:
   meshes:
   - {fileID: 6563040069612807359}
   - {fileID: 1103056943604760482}
+--- !u!195 &641205067
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716478931674776764}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4805382395630397415
 GameObject:
   m_ObjectHideFlags: 0
