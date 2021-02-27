@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
 
+    [Header("Initialization")]
     [SerializeField] public List<Material> colours;
 
     [SerializeField] private GameObject characterPrefab;
@@ -14,6 +16,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Transform spawnCenter;
     [SerializeField] private float spawnRadius;
+
+    [Header("Score UI")]
+    [SerializeField] private Slider redTeamScore;
+    [SerializeField] private Slider greenTeamScore;
+    [SerializeField] private Slider blueTeamScore;
 
     public Dictionary<Color, Dictionary<int, GameObject>> teams;
 
@@ -76,5 +83,18 @@ public class GameManager : MonoBehaviour
     {
         teams[oldColour.color].Remove(data.id);
         teams[newColour.color].Add(data.id, character);
+    }
+
+    private void Update()
+    {
+        int totalCharacters = numCharacters + 1; // +player
+
+        float redTotal = (float)teams[colours[0].color].Count / (float)totalCharacters;
+        float greenTotal = (float)teams[colours[1].color].Count / (float)(totalCharacters) + redTotal;
+        float blueTotal = (float)teams[colours[2].color].Count / (float)(totalCharacters) + greenTotal;
+
+        redTeamScore.value = redTotal;
+        greenTeamScore.value = greenTotal;
+        blueTeamScore.value = blueTotal;
     }
 }

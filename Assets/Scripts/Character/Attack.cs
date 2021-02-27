@@ -17,6 +17,7 @@ public class Attack : MonoBehaviour
     public void Shoot()
     {
         GameObject bullet = BulletManager.Instance.GetBullet();
+        bullet.GetComponent<Rigidbody>().velocity = Vector3.zero; // Reusing ball reuses velocity, needs to be zeroed out
         bullet.SetActive(true);
 
         bullet.GetComponent<MeshRenderer>().material = data.currentColour;
