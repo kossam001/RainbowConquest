@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum TeamColour
+{
+    RED,
+    GREEN,
+    BLUE
+}
+
 public class Gameplay : MonoBehaviour
 {
     private static Gameplay instance;
@@ -10,6 +17,9 @@ public class Gameplay : MonoBehaviour
 
     [Header("Initialization")]
     [SerializeField] public List<Material> colours;
+
+    public TeamColour playerTeamColour;
+    public GameObject player;
 
     [SerializeField] private GameObject characterPrefab;
     [SerializeField] private int numCharacters;
@@ -57,6 +67,9 @@ public class Gameplay : MonoBehaviour
             GameObject spawnedCharacter = Instantiate(characterPrefab, spawnLocation, Quaternion.Euler(0.0f,0.0f, 0.0f));
             spawnedCharacter.transform.SetParent(spawnCenter);
         }
+
+        //UIManager.Instance.SetTeamColour(player.GetComponent<CharacterData>().currentColour.color);
+        //player.GetComponent<ColourChange>().ChangeColour(colours[(int)playerTeamColour]);
     }
 
     public Material InitColour(GameObject character, CharacterData data)
