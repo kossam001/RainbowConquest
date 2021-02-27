@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Main Level")]
     public Image teamLabel;
+    public GameObject pauseMenu;
 
     [Header("Stage Select")]
     public TMP_InputField redInput;
@@ -49,5 +50,10 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.playerTeam = (TeamColour)playerTeamInput.value;
 
         SceneManager.LoadScene(name);
+    }
+
+    public void TogglePauseMenu()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
     }
 }

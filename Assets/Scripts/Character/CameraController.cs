@@ -19,6 +19,8 @@ public class CameraController : MonoBehaviour
 
     public void OnLook(InputValue delta)
     {
+        if (UIManager.Instance.pauseMenu.activeInHierarchy) return;
+
         Vector2 aimValue = delta.Get<Vector2>();
 
         FollowTarget.rotation *=

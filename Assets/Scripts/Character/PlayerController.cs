@@ -27,10 +27,10 @@ public class PlayerController : Character
 
     private Vector2 movementDirection;
 
+    private bool isPaused = false;
+
     private void Awake()
     {
-
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -54,6 +54,8 @@ public class PlayerController : Character
 
     public void OnMovement(InputValue vector2)
     {
+        if (isPaused) return;
+
         movementDirection = vector2.Get<Vector2>();
 
         characterAnimator.SetFloat(MoveXHash, movementDirection.x);
@@ -67,6 +69,30 @@ public class PlayerController : Character
 
     public void OnAttack(InputValue button)
     {
+        if (isPaused) return;
+
         attackComponent.Shoot();
+    }
+
+    public void OnPause()
+    {
+        if (Time.timeScale == 1.0f)
+        {
+            UIManager.Instance.TogglePauseMenu();
+            isPaused = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            UIManager.Instance.TogglePauseMenu();
+            isPaused = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+            Time.timeScale = 1.0f;
+        }
     }
 }
