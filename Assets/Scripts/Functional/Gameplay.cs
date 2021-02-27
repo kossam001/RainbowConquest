@@ -22,10 +22,17 @@ public class Gameplay : MonoBehaviour
     public GameObject player;
 
     [SerializeField] private GameObject characterPrefab;
-    [SerializeField] private int numCharacters;
 
     [SerializeField] private Transform spawnCenter;
     [SerializeField] private float spawnRadius;
+
+    [SerializeField] private int redTeamSize;
+    [SerializeField] private int blueTeamSize;
+    [SerializeField] private int greenTeamSize;
+
+    [SerializeField] private Transform redTeam;
+    [SerializeField] private Transform greenTeam;
+    [SerializeField] private Transform blueTeam;
 
     [Header("Score UI")]
     [SerializeField] private Slider redTeamScore;
@@ -45,30 +52,28 @@ public class Gameplay : MonoBehaviour
     private void Awake()
     {
         if (instance != null && instance != this)
-        {
             Destroy(this.gameObject);
-        }
+
         else
-        {
             instance = this;
-        }
+
+        playerTeamColour = GameManager.Instance.playerTeam;
+
+        redTeamSize = GameManager.Instance.redTeamSize;
+        greenTeamSize = GameManager.Instance.greenTeamSize;
+        blueTeamSize = GameManager.Instance.blueTeamSize;
 
         teams = new Dictionary<TeamColour, Dictionary<int, GameObject>>();
         
         for (int i = 0; i < 3; i++)
-        {
             teams.Add((TeamColour)i, new Dictionary<int, GameObject>());
-        }
 
-        for (int i = 0; i < numCharacters; i++)
+        for (int i = 0; i < redTeamSize + greenTeamSize + blueTeamSize; i++)
         {
             Vector3 spawnLocation = spawnCenter.position + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0.0f, Random.Range(-spawnRadius, spawnRadius));
 
             GameObject spawnedCharacter = Instantiate(characterPrefab, spawnLocation, Quaternion.Euler(0.0f,0.0f, 0.0f));
-            spawnedCharacter.transform.SetParent(spawnCenter);
         }
-
-
     }
 
     public void InitColour(GameObject character, CharacterData data)
@@ -81,8 +86,22 @@ public class Gameplay : MonoBehaviour
         }
         else
         {
-            Material randColour = colours[Random.Range(0, colours.Count)];
-            data.currentColour = randColour.color;
+            //Material randColour = colours[Random.Range(0, colours.Count)];
+            if (teams[TeamColour.RED].Count < redTeamSize)
+            {
+                character.transform.SetParent(redTeam);
+                data.currentColour = Color.red;
+            }
+            else if (teams[TeamColour.GREEN].Count < greenTeamSize)
+            {
+                character.transform.SetParent(greenTeam);
+                data.currentColour = Color.green;
+            }
+            else
+            {
+                character.transform.SetParent(blueTeam);
+                data.currentColour = Color.blue;
+            }
         }
 
         teams[GetColourToTeam(data.currentColour)].Add(characterCount, character);
@@ -130,7 +149,7 @@ public class Gameplay : MonoBehaviour
 
     private void UpdateScore()
     {
-        int totalCharacters = numCharacters + 1; // +player
+        int totalCharacters = redTeamSize + blueTeamSize + greenTeamSize + 1; // +player
 
         float redTotal = (float)teams[TeamColour.RED].Count / (float)totalCharacters;
         float greenTotal = (float)teams[TeamColour.GREEN].Count / (float)(totalCharacters) + redTotal;
