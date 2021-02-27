@@ -11,9 +11,7 @@ public class ColourChange : MonoBehaviour
     {
         data = GetComponent<CharacterData>();
 
-        Color colour = Gameplay.Instance.InitColour(gameObject, data);
-
-        data.currentColour = colour;
+        Gameplay.Instance.InitColour(gameObject, data);
 
         foreach (SkinnedMeshRenderer mesh in meshes)
         {

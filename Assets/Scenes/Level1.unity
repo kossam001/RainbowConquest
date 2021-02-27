@@ -1486,10 +1486,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: ef4f031b97de9fa44808c1e88f9cc524, type: 2}
   - {fileID: 2100000, guid: c8e6e148f8ab981419bc424eb43ca578, type: 2}
   - {fileID: 2100000, guid: f804cc0751c84fa4fabfdefcfee8280c, type: 2}
-  playerTeamColour: 1
+  playerTeamColour: 2
   player: {fileID: 1163244256}
   characterPrefab: {fileID: 4716478931674776764, guid: 901c7beb134e8a1469f872037c9e4e3d, type: 3}
-  numCharacters: 49
+  numCharacters: 1
   spawnCenter: {fileID: 810457099}
   spawnRadius: 65
   redTeamScore: {fileID: 603810677}
@@ -5025,7 +5025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ce722d1bbdd8244a13a5fb570d8aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamLabel: {fileID: 0}
+  teamLabel: {fileID: 1956039389}
 --- !u!1 &1678399677
 GameObject:
   m_ObjectHideFlags: 0
@@ -8549,6 +8549,10 @@ PrefabInstance:
     - target: {fileID: 7016706212791906871, guid: c66377087f367eb4f97b46a9dd5e5034, type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016706212791906871, guid: c66377087f367eb4f97b46a9dd5e5034, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7650359794985642125, guid: c66377087f367eb4f97b46a9dd5e5034, type: 3}
       propertyPath: m_RootOrder

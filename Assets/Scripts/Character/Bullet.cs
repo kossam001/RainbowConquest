@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Character") && !ReferenceEquals(other.gameObject, owner))
+        if ((other.gameObject.CompareTag("Character") || other.gameObject.CompareTag("Player")) && !ReferenceEquals(other.gameObject, owner))
         {
             UpdateHealth(other.gameObject, GetComponent<MeshRenderer>().material);
         }

@@ -68,17 +68,27 @@ public class Gameplay : MonoBehaviour
             spawnedCharacter.transform.SetParent(spawnCenter);
         }
 
-        //UIManager.Instance.SetTeamColour(player.GetComponent<CharacterData>().currentColour.color);
-        //player.GetComponent<ColourChange>().ChangeColour(colours[(int)playerTeamColour]);
+
     }
 
-    public Color InitColour(GameObject character, CharacterData data)
+    public void InitColour(GameObject character, CharacterData data)
     {
-        Material randColour = colours[Random.Range(0, colours.Count)];
-        teams[GetColourToTeam(randColour.color)].Add(characterCount, character);
+        // Player should be able to select team
+        if (character.CompareTag("Player"))
+        {
+            data.currentColour = GetTeamToColour(playerTeamColour);
+            UIManager.Instance.SetTeamColour(data.currentColour);
+        }
+        else
+        {
+            Material randColour = colours[Random.Range(0, colours.Count)];
+            data.currentColour = randColour.color;
+        }
+
+        teams[GetColourToTeam(data.currentColour)].Add(characterCount, character);
 
         data.id = characterCount;
-        data.currentTeam = Gameplay.Instance.GetColourToTeam(randColour.color);
+        data.currentTeam = Gameplay.Instance.GetColourToTeam(data.currentColour);
         characterCount++;
 
         // Setup health
@@ -86,9 +96,7 @@ public class Gameplay : MonoBehaviour
         data.colourHealth.Add(Color.red, 0.0f);
         data.colourHealth.Add(Color.green, 0.0f);
         data.colourHealth.Add(Color.blue, 0.0f);
-        data.colourHealth[randColour.color] = 1.0f;
-
-        return randColour.color;
+        data.colourHealth[data.currentColour] = 1.0f;
     }
 
     public List<GameObject> GetEnemies(TeamColour colour)
