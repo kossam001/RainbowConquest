@@ -20,6 +20,10 @@ public class UIManager : MonoBehaviour
     public TMP_InputField blueInput;
     public TMP_Dropdown playerTeamInput;
 
+    [Header("Game Over")]
+    public Image background;
+    public TMP_Text result;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -29,6 +33,11 @@ public class UIManager : MonoBehaviour
         else
         {
             instance = this;
+        }
+
+        if (SceneManager.GetActiveScene().name == "GameOver")
+        {
+            SetGameOver();
         }
     }
 
@@ -55,5 +64,31 @@ public class UIManager : MonoBehaviour
     public void TogglePauseMenu()
     {
         pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
+    }
+
+    private void SetGameOver()
+    {
+        Color backgroundColour;
+
+        switch (GameManager.Instance.playerTeam)
+        {
+            case TeamColour.RED:
+                backgroundColour = Color.red;
+                break;
+            case TeamColour.GREEN:
+                backgroundColour = Color.green;
+                break;
+            default:
+                backgroundColour = Color.blue;
+                break;
+        }
+
+        background.color = backgroundColour;
+
+        if (GameManager.Instance.win)
+            result.text = "YOU WIN";
+
+        else
+            result.text = "YOU LOSE";
     }
 }

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public int greenTeamSize;
     public TeamColour playerTeam;
 
+    public bool win = false;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -24,17 +26,5 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
 
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
