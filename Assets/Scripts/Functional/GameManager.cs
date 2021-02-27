@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return instance; } }
 
     [SerializeField] public List<Material> colours;
-    public Dictionary<Material, List<GameObject>> teams;
+    public Dictionary<Color, Dictionary<int, GameObject>> teams;
+
+    private int characterCount = 0;
 
     private void Awake()
     {
@@ -21,18 +23,21 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
-        teams = new Dictionary<Material, List<GameObject>>();
+        teams = new Dictionary<Color, Dictionary<int, GameObject>>();
         
         for (int i = 0; i < 3; i++)
         {
-            teams.Add(colours[i], new List<GameObject>());
+            teams.Add(colours[i].color, new Dictionary<int, GameObject>());
         }
     }
 
-    public Material InitColour(GameObject character)
+    public Material InitColour(GameObject character, CharacterData data)
     {
         Material randColour = colours[Random.Range(0, colours.Count)];
-        teams[randColour].Add(character);
+        teams[randColour.color].Add(characterCount, character);
+
+        data.id = characterCount;
+        characterCount++;
 
         return randColour;
     }
@@ -43,12 +48,18 @@ public class GameManager : MonoBehaviour
 
         foreach (Material mat in colours)
         {
-            if (mat.name != colour.name)
+            if (mat.color != colour.color)
             {
-                enemies.AddRange(teams[mat]);
+                enemies.AddRange(teams[mat.color].Values);
             }
         }
 
         return enemies;
+    }
+
+    public void ChangeTeams(Material oldColour, Material newColour, CharacterData data, GameObject character)
+    {
+        teams[oldColour.color].Remove(data.id);
+        teams[newColour.color].Add(data.id, character);
     }
 }

@@ -7,7 +7,12 @@ public class ChaseTarget : TreeNode
 {
     public override bool PerformCheck()
     {
-        if (brain.activeTarget == null) return false;
+        if (brain.activeTarget == null)
+        {
+            brain.agent.ResetPath();
+            state.ChangeState(StateID.Wander);
+            return false;
+        }
 
         Vector3 targetPosition = brain.activeTarget.transform.position;
         Vector3 selfPosition = brain.character.transform.position;

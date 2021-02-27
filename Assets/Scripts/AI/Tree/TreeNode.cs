@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Root", menuName = "AITreeNodes/Root")]
 public class TreeNode : ScriptableObject
 {
     protected Brain brain;

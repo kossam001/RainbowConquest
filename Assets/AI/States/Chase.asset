@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f675ed4c1469644952ea0396d8957d, type: 3}
   m_Name: Chase
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 11400000, guid: 9abba44602b323243b578e8240c6cdd2, type: 2}
+  stateMachine: {fileID: 0}
+  rootNode: {fileID: 11400000, guid: 78a90904f4d2d224aa87d6592a1f7320, type: 2}
   currentNode: {fileID: 0}
   brain: {fileID: 0}
-  id: 0
-  transferrableStates: []
+  id: 1
+  transferrableStates:
+  - {fileID: 11400000, guid: 6f4cb10ab7cf4904d8c71ce5a88b72e4, type: 2}

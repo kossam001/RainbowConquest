@@ -20,8 +20,17 @@ public class FindActiveTarget : TreeNode
         {
             brain.enemyTargets = GameManager.Instance.GetEnemies(brain.character.GetComponent<CharacterData>().currentColour);
 
-            brain.activeTarget = brain.enemyTargets[Random.Range(0, brain.enemyTargets.Count)];
-            activeTarget = brain.activeTarget;
+            if (brain.enemyTargets.Count > 0)
+            {
+                brain.activeTarget = brain.enemyTargets[Random.Range(0, brain.enemyTargets.Count)];
+                activeTarget = brain.activeTarget;
+            }
+            else
+            {
+                brain.activeTarget = null;
+                brain.agent.ResetPath();
+                state.ChangeState(StateID.Wander);
+            }
 
             timer = duration;
         }
