@@ -11,7 +11,7 @@ public class ColourChange : MonoBehaviour
     {
         data = GetComponent<CharacterData>();
 
-        Material colour = GameManager.Instance.InitColour(gameObject, data);
+        Material colour = Gameplay.Instance.InitColour(gameObject, data);
 
         data.currentColour = colour;
 
@@ -25,7 +25,7 @@ public class ColourChange : MonoBehaviour
     {
         if (data.currentColour.name == material.name) return;
 
-        GameManager.Instance.ChangeTeams(data.currentColour, material, data, gameObject);
+        Gameplay.Instance.ChangeTeams(data.currentColour, material, data, gameObject);
 
         data.currentColour = material;
 

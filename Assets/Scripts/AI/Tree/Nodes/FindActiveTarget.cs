@@ -18,7 +18,7 @@ public class FindActiveTarget : TreeNode
 
         if (timer <= 0.0f)
         {
-            brain.enemyTargets = GameManager.Instance.GetEnemies(brain.character.GetComponent<CharacterData>().currentColour);
+            brain.enemyTargets = Gameplay.Instance.GetEnemies(brain.character.GetComponent<CharacterData>().currentColour);
 
             if (brain.enemyTargets.Count > 0)
             {
