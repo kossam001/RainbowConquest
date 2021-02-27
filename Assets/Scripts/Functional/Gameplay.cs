@@ -158,6 +158,11 @@ public class Gameplay : MonoBehaviour
         redTeamScore.value = redTotal;
         greenTeamScore.value = greenTotal;
         blueTeamScore.value = blueTotal;
+
+        for (int i = 0; i < 3; i++)
+        {
+            CheckWin((TeamColour)i);
+        }
     }
 
     private void UpdateHealth()
@@ -193,6 +198,17 @@ public class Gameplay : MonoBehaviour
                 return Color.green;
             default:
                 return Color.blue;
+        }
+    }
+
+    public void CheckWin(TeamColour colour)
+    {
+        if (teams[colour].Count >= redTeamSize + blueTeamSize + greenTeamSize + 1)
+        {
+            if (playerTeamColour == colour)
+                GameManager.Instance.win = true;
+
+            UIManager.Instance.LoadScene("GameOver");
         }
     }
 }

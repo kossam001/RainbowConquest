@@ -68,6 +68,9 @@ public class UIManager : MonoBehaviour
 
     private void SetGameOver()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         Color backgroundColour;
 
         switch (GameManager.Instance.playerTeam)
@@ -83,12 +86,19 @@ public class UIManager : MonoBehaviour
                 break;
         }
 
-        background.color = backgroundColour;
+        background.color = backgroundColour * new Vector4(1.0f, 1.0f, 1.0f, 0.5f);
 
         if (GameManager.Instance.win)
             result.text = "YOU WIN";
 
         else
             result.text = "YOU LOSE";
+
+        GameManager.Instance.win = false;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
