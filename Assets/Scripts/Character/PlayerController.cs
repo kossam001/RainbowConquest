@@ -6,9 +6,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : Character
 {
-    // Animator hashes
-    private readonly int MoveXHash = Animator.StringToHash("MoveX");
-    private readonly int MoveZHash = Animator.StringToHash("MoveZ");
     private readonly int IsAttackingHash = Animator.StringToHash("IsAttacking");
 
     public float movementSpeed;
@@ -71,9 +68,14 @@ public class PlayerController : Character
     {
         if (isPaused) return;
         if (shootCooldown >= 0.0f) return;
-
+        
         shootCooldown = 0.5f;
 
+        Invoke(nameof(Shoot), 0.2f);
+    }
+
+    private void Shoot()
+    {
         attackComponent.Shoot();
     }
 

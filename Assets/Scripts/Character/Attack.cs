@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    private readonly int IsAttackingHash = Animator.StringToHash("IsAttacking");
+
     public Transform bulletSpawnPoint;
     private CharacterData data;
 
@@ -16,6 +18,16 @@ public class Attack : MonoBehaviour
 
     public void Shoot()
     {
+        if (GetComponent<Animator>().GetBool(IsAttackingHash)) return;
+        GetComponent<Animator>().SetBool(IsAttackingHash, true);
+        Invoke(nameof(Fire), 0.2f);
+    }
+
+    private void Fire()
+    {
+        if (GetComponent<AudioSource>() != null)
+            GetComponent<AudioSource>().Play();
+
         GameObject bullet = BulletManager.Instance.GetBullet();
         bullet.GetComponent<Rigidbody>().velocity = Vector3.zero; // Reusing ball reuses velocity, needs to be zeroed out
         bullet.GetComponent<Bullet>().owner = gameObject;
